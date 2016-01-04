@@ -1,0 +1,223 @@
+/**
+Noah Ball
+Period 4
+**/
+#include <iostream>
+#include <time.h>
+#include <windows.h>
+#include <stdlib.h>
+#include <string>
+using namespace std;
+///Function Prototypes
+bool timeCheck(int,int);
+int timeSet();
+int defaultTime();
+void whiteList(string [], int, string);
+void blackList(string [], int, string);
+void defaultBlockedSites(string []);
+void defaultBlockedApplications();
+int main()
+{
+    static int firstStart=0;
+    ///so the startup code does not run more than once
+    if(firstStart==0)
+    {
+        cout << "Welcome! Please select a choice below. Whitelisting allows a site even if the \ndefault blocks it, while blacklisting blocks a site even if not blocked by \nthe default settings.";
+        cout << endl << "Whitelisting trumps blacklisting if the same site or application is listed in \nboth, it will be allowed. If you want it blocked, make sure it isn't in the \nwhitelist.\n";
+        firstStart++;
+
+
+    }
+    ///Variables
+    int minutesAllowed=defaultTime();
+    int machineTime = defaultTime();
+    static int counter = 0;
+    int choice = 0;
+    int seconds = 60000;
+    bool time = true;
+    int minutesPassed=0;
+    char yesno;
+    string adminPass = "";
+    string passDefault = "password";
+    string notDefSites[10];
+    string notDefApps[10];
+    string userIn = "";
+
+    ///Adding and Removing (with password check)
+    ///Since yknow... parental control
+    cout << "Would you like to add or remove items from either list? (Y/N)" << endl;
+    cin >> yesno;
+    bool track = true;
+    if(yesno == 'Y' || yesno == 'y')
+    {
+        cout << endl << "Please enter admin password: ";
+        cin >> adminPass;
+        do
+        {
+
+                if (adminPass == passDefault)
+        {
+            cout << endl << "Add(W):         1";
+            cout << endl << "Add(B):         2";
+            cout << endl << "Remove(W):      3";
+            cout << endl << "Remove(B):      4";
+            cout << endl << "Quit:           5";
+            cout << endl;
+            cin >> choice;
+
+                switch(choice)
+                {
+                    case 1:
+                        cout << "What do you wish to add to the whitelist?" << endl;
+                        cin >> userIn;
+                        if(userIn.substr(0,4) == "http")
+                        {
+                            whiteList(notDefSites, 0, userIn);
+                            cout << notDefSites[0];
+                        }
+                        else
+                        {
+
+                        }
+                        choice = 0;
+                        break;
+                    case 2:
+                        cout << "What would you like to add to the blacklist?" << endl;\
+                        cin >> userIn;
+                        if(userIn.substr(0,3) == "http")
+                        {
+                           /// whiteList(notDefSites, 0, userIn);
+                        }
+                        else
+                        {
+
+                        }
+                        choice = 0;
+                        break;
+                    case 3:
+                        cout << "Which of the following would you like to remove from the whitelist?"; ///add array onto the end with whitelist
+                        cin >> userIn;
+                        /**if(userIn.substr(0,3) == "http")
+                        {
+                            whiteList(notDefSites, 0);
+                        }
+                        else
+                        {
+
+                        }
+                        choice = 0;
+                        **/
+
+            }
+        }
+            else
+            {
+                cout << endl << "Incorrect password. Please reenter." << endl;
+                cin >> adminPass;
+            }
+        }while(track==true);
+    }
+
+    system("CLS");
+
+    do
+    {
+
+        if(timeCheck(minutesPassed, minutesAllowed)==true)
+        {
+            time = false;
+        }
+        Sleep(seconds);
+        minutesPassed +=1;
+    }while(time == true);
+    return 0;
+}
+/**
+Will be called in a loop to check every minute (6000 milliseconds)
+to check if the user has time left on their usage for both Internet
+and applications
+**/
+bool timeCheck(int minutes, int allowed)
+{
+    if(minutes == allowed)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+/**
+Will set the time of the machine (if possible) and will allow user to set their time allowed (i.e. one hour, two hours)
+**/
+int timeSet()
+{
+
+}
+/**
+If no machine time can be accessed and/or user does not enter their own time, it will set one or both
+**/
+int defaultTime()
+{
+    static int x = 0;
+    if(x == 0)
+    {
+        return 120; ///Two hours
+        x++;
+    }
+    if(x == 1)
+    {
+        return 1300; ///One p.m.
+        x++;
+
+    }
+}
+/**
+Will add/remove sites and applications (depending on user choice) to the whitelist
+Will hold both arrays for sites and applications, and will return the one that is needed
+**/
+void whiteList(string arrayN[], int tell, string user)
+{
+
+}
+/**
+Will add/remove sites and applications (depending on user choice) to the blacklist
+Will hold both arrays for sites and applications, and will return the one that is needed
+**/
+void blackList()
+{
+
+}
+/**
+Will initialize a list of default sites (to be determined) that will not be allowed (can be overwritten if on whitelist)
+**/
+void defaultBlockedSites(string sites[])
+{
+    ///assigns default web addresses that cannot be accessed
+    for(int x = 0; x< 3; x++)
+    {
+        if (x == 0)
+            sites[x] = "http://www.youtube.com";
+        else if (x == 1)
+            sites[x] = "http://www.facebook.com";
+        else if (x == 2)
+            sites[x] = "http://www.twitter.com";
+    }
+}
+/**
+Will initialize a list of default applications (to be determined) that will not be allowed (can be overwritten if on whitelist)
+**/
+void defaultBlockedApplications(string apps[])
+{
+    ///assigns default path files that can not be accessed
+    for(int x = 0;x < 3; x++)
+    {
+        if (x == 0)
+            apps[x] = "C:\\Program Files (x86)\\Steam";
+        if (x == 1)
+            apps[x] = "C:\\Program Files (x86)\\Skype";
+        if (x == 2)
+            apps[x] = "C:\\Program Files (x86)\\QuickTime";
+    }
+}
