@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 using namespace std;
-
+///prototypes
 void searchGames();
 void findGames();
 double typeGame();
@@ -19,7 +19,7 @@ void randomGames();
 int redo;
 
 const int GAME_NUM = 34;
-
+///Game test array
 string gameList[GAME_NUM] = {"Panzer General", "Panzer General", "Tactics", "Hammer of the Scots", "Axis & Allies",
                             "Attack", "Liberte", "Heads of State", "Imperial", "Battle Cry", "Battle Cry", "Battle Cry",
                             "Memoir '44", "Memoir '44", "King of Tokyo", "King of Tokyo", "King of Tokyo: Halloween",
@@ -29,13 +29,13 @@ string gameList[GAME_NUM] = {"Panzer General", "Panzer General", "Tactics", "Ham
                             "Betrayal of the House on the Hill", "Shadow Hunters", "Shadow Hunters", "Battle Star Galactica",
                             "Defenders of the Realm"};
 
-
+///game test locactions
 int gameLocation[GAME_NUM] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                               2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
-
+///game minimum player
 int gameMinPlayer[GAME_NUM] = {1, 1, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2,
                                2, 2, 2, 3, 3, 2, 3, 3, 2, 2, 2, 1};
-
+///main
 int main()
 {
     int userResponse;
@@ -73,7 +73,7 @@ int main()
     }
 
 }
-
+///searches array for games
 void searchGames()
 {
     int userGameStats;
@@ -126,7 +126,7 @@ void searchGames()
     }
 
 }
-
+///finds all the types of games
 void findGames()
 {
     system("CLS");
@@ -136,7 +136,7 @@ void findGames()
     length();
     difficultyLevel();
 }
-
+///sorts through the games
 void browseGames()
 {
     system("CLS");
@@ -148,7 +148,7 @@ void browseGames()
         cout << b+1 << ". " << gameList[b] << endl;
     }
 }
-
+///pulls a random game
 void randomGames()
 {
     system("CLS");
@@ -177,7 +177,7 @@ void randomGames()
         cout << "The new game that was randomly chosen was " << gameList[num] << endl;
     }
 }
-
+///returns what type of game the user is looking for
 double typeGame()
 {
     int userTypeGame;
@@ -194,7 +194,7 @@ double typeGame()
 
     return userTypeGame;
 }
-
+///returns min players of game
 double minPlayer()
 {
     int userMinPlayer;
@@ -205,7 +205,7 @@ double minPlayer()
 
     return userMinPlayer;
 }
-
+///returns max players of game
 double maxPlayer()
 {
     int userMaxPlayer;
@@ -216,6 +216,7 @@ double maxPlayer()
 
     return userMaxPlayer;
 }
+///returns length of time to play game
 double length()
 {
     int userLength;
@@ -226,7 +227,7 @@ double length()
 
     return userLength;
 }
-
+///finds level
 string difficultyLevel()
 {
     string userDifficultyLevel;
@@ -245,8 +246,3 @@ string difficultyLevel()
 ///Search by number for the search selection and the Browse games
 
 ///? or not available in the missing data in the arrays do not use the vertex function for arrays
-
-//yes hello this is edited
-
-
-//Hey was up
