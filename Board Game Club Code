@@ -7,6 +7,8 @@
 
 using namespace std;
 ///prototypes
+//Not that you need to, but divinding this into a header and cpp file would be nice...
+//however it would then need to be defined within a class
 void searchGames();
 void findGames();
 double typeGame();
@@ -18,8 +20,15 @@ void browseGames();
 void randomGames();
 int redo;
 
+//Vectors would eliminate the need for this.
 const int GAME_NUM = 34;
 ///Game test array
+
+//Create a structure which can be used to define the Games instead.
+//QR_Codes_V1 only requires shelf, minPlayers, and maxPlayers as ints, 
+//and 5 strings; name, rating, type, length (or minutes), anddifficulty.
+
+
 string gameList[GAME_NUM] = {"Panzer General", "Panzer General", "Tactics", "Hammer of the Scots", "Axis & Allies",
                             "Attack", "Liberte", "Heads of State", "Imperial", "Battle Cry", "Battle Cry", "Battle Cry",
                             "Memoir '44", "Memoir '44", "King of Tokyo", "King of Tokyo", "King of Tokyo: Halloween",
@@ -75,8 +84,10 @@ int main()
 }
 ///searches array for games
 void searchGames()
-{
+{ 
+  //boolean which will show game info
     int userGameStats;
+    //clears the screen
     system("CLS");
     int x = 0;
     bool j = 0;
@@ -130,11 +141,24 @@ void searchGames()
 void findGames()
 {
     system("CLS");
+    //These do nothing at the moment.
+    //Cache these values. (store in variables)
     typeGame();
     minPlayer();
     maxPlayer();
     length();
     difficultyLevel();
+    
+    //Define Vector (results) OR Define array (using maximum array size), and a counter
+    //iterate over list / array / vector
+      //If using a structure, compare structure values fetched from array to results gotten from above functions
+      //If data matches, add to defined vector (results)
+      //added value should either be the index, or the structure.
+      //incriment counter (if using an array)
+        //I personally would lean to te index, so that any modifications to the data are persisitant.
+    //return vector of results OR
+    //return array, use out to return counter
+    
 }
 ///sorts through the games
 void browseGames()
@@ -238,9 +262,14 @@ string difficultyLevel()
 
     return userDifficultyLevel;
 }
+//create a fetch string method, which can accept a message, if you wish to only accept certain input, 
+//the calling function can sift out whether the returned input is good or bad
+//This also means you only have to use cout / cin a few times, as apposed to every time you create a new method to fetch data
 
 
 ///Create a new array list every time a selection is made so that the search time is cut down
+//Array lists are called vectors in C++
+//Additionally, use structures, again, because parrallel vectors are worse than parrallel arrays
 
 
 ///Search by number for the search selection and the Browse games
