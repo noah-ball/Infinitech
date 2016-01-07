@@ -19,6 +19,7 @@ string difficultyLevel();
 void browseGames();
 void randomGames();
 int redo;
+void gameMatcher();
 
 //Vectors would eliminate the need for this.
 const int GAME_NUM = 34;
@@ -144,10 +145,19 @@ void findGames()
     //These do nothing at the moment.
     //Cache these values. (store in variables)
     typeGame();
-    minPlayer();
-    maxPlayer();
-    length();
-    difficultyLevel();
+    int minPlay = minPlayer();
+    int maxPlay = maxPlayer();
+
+    if(minPlay > maxPlay)
+    {
+        cout << "Sorry. Your number for minimum players exceeded that of the your maximum player" << endl;
+        cout << "Re-enter number:" << endl;
+        cout << "" << endl;
+        minPlay = minPlayer();
+        maxPlay = maxPlayer();
+    }
+    int time = length();
+    string difLevel = difficultyLevel();
     
     //Define Vector (results) OR Define array (using maximum array size), and a counter
     //iterate over list / array / vector
@@ -202,6 +212,21 @@ void randomGames()
     }
 }
 ///returns what type of game the user is looking for
+
+void gameMatcher()
+{
+    double minP = minPlayer();
+    double maxP = maxPlayer();
+
+    for(int y = 0; y <= GAME_NUM; y++)
+    {
+        if (gameMinPlayer[y] == minP)
+        {
+            ///Create the new array list for the games that match the min player amount
+        }
+    }
+}
+
 double typeGame()
 {
     int userTypeGame;
